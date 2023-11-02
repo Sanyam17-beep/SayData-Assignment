@@ -1,0 +1,27 @@
+.dropdown {
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  top: 50px;
+
+  border-radius: 8px;
+  right: 5px;
+
+}
+.dropdown-container{
+  justify-content: center;
+  display: flex;
+  position: relative;
+  width: 100%;
+  color: #0000008a;
+  font-family: Inter;
+  border: 1px solid #E4E7EC;
+  background-color: #F0F2F5;
+  align-items: center;
+  height: 100%;
+}
+.close{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
