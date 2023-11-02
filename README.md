@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# SayData's Abc Firm assignment
+
+This website is created in react with functionalities like:
+>1. Hover effects on Button and Sidebar items
+>2. Click or Drag and Drop files on Transcribe Box Modal Component using react-drag-drop-files
+>3. Pixel accuracy with high standard component management
+>4. This website is fully responsive
+
+## How to run
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
