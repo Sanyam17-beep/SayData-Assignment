@@ -1,20 +1,73 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { FileUploader } from "react-drag-drop-files";
 import './style.css';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 function TranscribeBox(props) { {/*Transcribe Box Form user can click or drag and drop file using react-drag-drop-files module. It is fully 
 functional form*/}
     
+const [checked, setChecked] = useState(false);
     const [text,setText]=useState("The maximum file size is 1GB for audio and 10GB for videos.Supported formats: mp3, mp4, wav, caf, aiff, avi, rmvb, flv, m4a, mov, wmv, wma");
     const [content,setContent]=useState("Click to upload");
+    const [transcription, setTranscription] = useState("");
     const [drag,setDrag]=useState("or drag and drop");
-    const fileTypes = ["MP3","MP4","WAV","CAF","AIFF","AVI","RMVB","FLV","M4A","MOV","WMV","WMA"];
-    const handleFileChange=(file)=>{
-   const newText="Name: "+file[0].name+" Size: "+(file[0].size/1048576).toFixed(2)+" MB";
-   setText(newText);
-   setContent("Remove");
-   setDrag("Uploaded File");
+    const fileTypes = ["MP3","MP4","WAV","CAF","AIFF","AVI","RMVB","FLV","M4A","MOV","WMV","WMA","WEBM"];
+    const [TransFile,setTransFile]=useState(null);
+    const handleTranscribeSubmit=async ()=>{
+        if(!checked){
+          toast("Speaker Identification needed");
+          return;
+        }
+      if(TransFile==null){
+       toast("File Needed");
+        return;
+      }
+      console.log(TransFile[0]);
+      if (TransFile) {
+        const formData = new FormData();
+        formData.append("audio", TransFile[0]);
+        try {
+          const response = await axios.post(
+          "https://sanyam-saydata-server.onrender.com/transcribe",
+            formData
+          );
+          setTranscription(response.data.transcription);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
     };
+    const add=(TransFile)=>{
+      const newRecord = {
+        name: TransFile[0].name,
+        type:TransFile[0].type,
+        transcription:transcription,
+        size:(TransFile[0].size/1048576).toFixed(2)+" MB",
+    dateCreated: new Date().toLocaleString(),
+    duration:Math.floor(Math.random() * 300),
+  };
+  props.setTranscriptionRecords([...props.transcriptionRecords, newRecord]);
+  
+  props.onClick();
+    }
+    const handleFileChange=(file)=>{
+      setTransFile(file);
+      const newText="Name: "+file[0].name+" Size: "+(file[0].size/1048576).toFixed(2)+" MB";
+      setText(newText);
+   setContent("Uploaded");
+   setDrag("File");
+
+    };
+    useEffect(() => {
+      if (TransFile && transcription) {
+        toast("File Transcription Completed");
+        add(
+        TransFile
+        );
+      }
+    }, [transcription]);
     const stack2=(
       <div className="Upload-Box">
       <div className="Upload-Box-Content">
@@ -46,6 +99,7 @@ functional form*/}
     );
   return (
     <>
+    <Toaster />
                 <div className="Transcribe-Box">
             <div className="Transcribe-header">
               <span className='Transcribe-Text'>Transcribe File</span>
@@ -56,7 +110,7 @@ functional form*/}
             <div className="Transcribe-Dropdown">
               <div className="Transcribe-Dropdown-Text">Transcription Language</div>
               <div className="Transcribe-Dropdown-Box">
-                <span className="Transcribe-Dropdown-Box-Text">Default</span>
+                <span className="Transcribe-Dropdown-Box-Text">English</span> {/*WE can add multiple languages but free api only support english */}
                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                   <path d="M2.37641 6.31882L7.58617 11.2221C8.09957 11.7053 8.90041 11.7053 9.41381 11.2221L14.6236 6.31882C14.8917 6.06648 14.9045 5.64456 14.6521 5.37645C14.3998 5.10833 13.9779 5.09555 13.7097 5.34789L8.49999 10.2512L3.29024 5.34789C3.02212 5.09554 2.6002 5.10833 2.34786 5.37645C2.09551 5.64456 2.1083 6.06648 2.37641 6.31882Z" fill="#667185" />
                 </svg>
@@ -77,12 +131,12 @@ functional form*/}
             </div>
             <div className="Transcribe-Control">
               <>
-                <input type="checkbox" id="cb1" />
+                <input type="checkbox" id="cb1" checked={checked} onChange={()=>setChecked(!checked)}/>
                 <label for="cb1"></label>
               </>
               <div className="Transcribe-Control-Text">Speaker Identification</div>
             </div>
-            <button className="Transcribe-Button">Transcribe File</button>
+            <button className={`Transcribe-Button ${(TransFile==null||!checked)?"":"Button-active"}`} onClick={handleTranscribeSubmit}>Transcribe File</button>
           </div>
     </>
   )

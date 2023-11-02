@@ -89,7 +89,7 @@
     list-style: none;
   }
   .sidebar{
-    height: 1024px;
+    height: 100vh;
     width: 18.8%;
     background: #FFF;
     display: flex;

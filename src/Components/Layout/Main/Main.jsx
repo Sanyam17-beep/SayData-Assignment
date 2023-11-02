@@ -12,12 +12,14 @@ import RecentTableBox from '../../RecentTableBox/RecentTableBox';
 import './style.css'
 function Main(props) { {/*This is Right component of Layout */}
     const [showModal, setShowModal] = useState(false);
-    const cards = [{ svg: <CardsSvg1 />, content: "100", text: "Uploaded Files" }, { svg: <CardsSvg2 />, content: "50", text: "Transcribed" }, { svg: <CardsSvg3 />, content: "20", text: "Saved" }]; {/*Cards Array is used to store object of card & multiple card can be created only using this array*/}
+    const [transcriptionRecords, setTranscriptionRecords] = useState([]);
+    const cards = [{ svg: <CardsSvg1 />, content: transcriptionRecords.length, text: "Uploaded Files" }, { svg: <CardsSvg2 />, content: transcriptionRecords.length, text: "Transcribed" }, { svg: <CardsSvg3 />, content: "20", text: "Saved" }]; {/*Cards Array is used to store object of card & multiple card can be created only using this array*/}
     return (
         <>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <TranscribeBox onClick={() => setShowModal(false)} /> {/*Modal Box Component*/}
+                    <TranscribeBox   transcriptionRecords={transcriptionRecords}
+        setTranscriptionRecords={setTranscriptionRecords} onClick={() => setShowModal(false)} /> {/*Modal Box Component*/}
                 </Modal>
             )}
             <div className="main">
@@ -31,7 +33,7 @@ function Main(props) { {/*This is Right component of Layout */}
                             })}
                         </div>
                     </div>
-                    <RecentTableBox/> {/* Recent Files Table's Box Component */}
+                    <RecentTableBox  transcriptionRecords={transcriptionRecords}/> {/* Recent Files Table's Box Component */}
                 </div>
             </div>
         </>
