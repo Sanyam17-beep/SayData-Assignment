@@ -31,7 +31,10 @@ function RecentTableBox(props) {
          <ConfirmDialog></ConfirmDialog>
          <Toaster></Toaster>
         <div className="RecentFiles">
-            <span className="RecentFilesHeading">Recent Files</span>
+        {props.isSelected=="Home"&&( <span className="RecentFilesHeading">Recent Files</span>)}
+        {props.isSelected=="Saved"&&( <span className="RecentFilesHeading">Saved Files</span>)}
+        {props.isSelected=="All Files"&&( <span className="RecentFilesHeading">All Files</span>)}
+        {props.isSelected=="Trash"&&( <span className="RecentFilesHeading">Deleted Files</span>)}
             <div className="Horizontal">
                 <div className="Line"></div>
             </div>
