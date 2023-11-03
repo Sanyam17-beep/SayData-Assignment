@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import Modal from '../../Modal/Modal';
 import TranscribeBox from '../../TranscribeBox/TranscribeBox';
@@ -13,8 +13,14 @@ import './style.css'
 function Main(props) { {/*This is Right component of Layout */}
     const [showModal, setShowModal] = useState(false);
     const [notificationRecords, setNotificationRecords] = useState([]);
+    const [savedRecords, setSavedRecords]=useState([]);
+    const [max,setmax]=useState(0);
+    const [trashRecords, setTrashRecords]=useState([]);
     const [transcriptionRecords, setTranscriptionRecords] = useState([]);
-    const cards = [{ svg: <CardsSvg1 />, content: transcriptionRecords.length, text: "Uploaded Files" }, { svg: <CardsSvg2 />, content: transcriptionRecords.length, text: "Transcribed" }, { svg: <CardsSvg3 />, content: "20", text: "Saved" }]; {/*Cards Array is used to store object of card & multiple card can be created only using this array*/}
+    useEffect(()=>{
+        if(transcriptionRecords.length>max)setmax(transcriptionRecords.length);
+    },[])
+    const cards = [{ svg: <CardsSvg1 />, content: max, text: "Uploaded Files" }, { svg: <CardsSvg2 />, content: transcriptionRecords.length, text: "Transcribed" }, { svg: <CardsSvg3 />, content:savedRecords.length, text: "Saved" }]; {/*Cards Array is used to store object of card & multiple card can be created only using this array*/}
     return (
         <>
             {showModal && (
@@ -34,7 +40,9 @@ function Main(props) { {/*This is Right component of Layout */}
                             })}
                         </div>
                     </div>
-                    <RecentTableBox notificationRecords={notificationRecords} setNotificationRecords={setNotificationRecords} setTranscriptionRecords={setTranscriptionRecords} transcriptionRecords={transcriptionRecords}/> {/* Recent Files Table's Box Component */}
+                    <RecentTableBox notificationRecords={notificationRecords} setNotificationRecords={setNotificationRecords} setTranscriptionRecords={setTranscriptionRecords} savedRecords={savedRecords} setSavedRecords={setSavedRecords} transcriptionRecords={transcriptionRecords} isSelected={props.isSelected}
+                    trashRecords={trashRecords} setTrashRecords={setTrashRecords}
+                    /> {/* Recent Files Table's Box Component */}
                 </div>
             </div>
         </>

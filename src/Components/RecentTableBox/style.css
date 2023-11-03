@@ -73,6 +73,39 @@ cursor: pointer;
   gap: 10px;
   align-self: stretch;
   }
+ .p-dialog{
+    background-color: #000000d1;
+    color: white;
+    border-radius: 11px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+ .p-dialog-title{
+    font-size: 25px;
+  }
+  .p-confirm-dialog-message{
+    font-size: 20px
+  }
+  .p-dialog-footer>button{
+    width: 100px;
+    height: 40px;
+    font-weight: 700;
+    border-radius: 2rem;
+    border: none;
+  }
+  .p-dialog-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+  }
+  .p-icon{
+    color: white;
+    font-size: 20px;
+  }
   .Tablecell{
     display: flex;
   flex-direction: column;
