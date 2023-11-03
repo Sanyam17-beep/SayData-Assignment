@@ -8,6 +8,28 @@
   justify-content: center;
   align-items: center;
   }
+  .badge{
+    width: 20px;
+    height: 19px;
+    background-color: #0075ffc2;
+    border-radius: 50%;
+    color: white;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+
+  }
+  .Notification-Card{
+    padding: 10px;
+    height: fit-content;
+    width: 100%;
+    border: solid 1px #0000004d;
+    border-radius: 6px;
+    font-weight: 550;
+  }
   .NotificationIcon{
     display: flex;
   width: 40px;

@@ -5,6 +5,8 @@ function Tablecell(props) {
   const [tempchecked,settempchecked]=useState(false);
     const downloadTxtFile = () => {
            toast("Downloading.....");
+           const newNotification=`Transcription of ${props.item.name} completed`;
+           props.setNotificationRecords([...props.notificationRecords,newNotification]);
         const element = document.createElement("a");
         const file = new Blob([props.item.transcription],
             { type: 'text/plain;charset=utf-8' });

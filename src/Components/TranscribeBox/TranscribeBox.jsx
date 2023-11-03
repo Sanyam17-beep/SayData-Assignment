@@ -75,6 +75,8 @@ const [checked, setChecked] = useState(false);
     useEffect(() => {
       if (TransFile && transcription) {
         setisLoading(false);
+        const newNotification=`Transcription of ${TransFile[0].name} completed`;
+        props.setNotificationRecords([...props.notificationRecords,newNotification]);
         toast("File Transcription Completed");
         add(
         TransFile
