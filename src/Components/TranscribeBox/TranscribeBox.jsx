@@ -41,7 +41,7 @@ const [checked, setChecked] = useState(false);
         formData.append("audio", TransFile[0]);
         try {
           const response = await axios.post(
-          "https://sanyam-saydata-server.onrender.com/transcribe",
+          "https://extinct-overcoat-jay.cyclic.app/transcribe",
             formData
           );
           setTranscription(response.data.transcription);
