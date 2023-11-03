@@ -1,12 +1,13 @@
 import React from 'react'
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
 import { FileUploader } from "react-drag-drop-files";
 import './style.css';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import LoadingBar from "react-top-loading-bar";
 function TranscribeBox(props) { {/*Transcribe Box Form user can click or drag and drop file using react-drag-drop-files module. It is fully 
 functional form*/}
-    
+const [isLoading,setisLoading]=useState(false);
 const [checked, setChecked] = useState(false);
     const [text,setText]=useState("The maximum file size is 1GB for audio and 10GB for videos.Supported formats: mp3, mp4, wav, caf, aiff, avi, rmvb, flv, m4a, mov, wmv, wma");
     const [content,setContent]=useState("Click to upload");
@@ -14,7 +15,18 @@ const [checked, setChecked] = useState(false);
     const [drag,setDrag]=useState("or drag and drop");
     const fileTypes = ["MP3","MP4","WAV","CAF","AIFF","AVI","RMVB","FLV","M4A","MOV","WMV","WMA","WEBM"];
     const [TransFile,setTransFile]=useState(null);
+    const loadingRef = useRef(null);
+
+    useEffect(() => {
+        if (isLoading) {
+            loadingRef.current?.continuousStart();
+        } else {
+            loadingRef.current?.complete();
+        }
+    }, [isLoading]);
+
     const handleTranscribeSubmit=async ()=>{
+      setisLoading(true);
         if(!checked){
           toast("Speaker Identification needed");
           return;
@@ -62,6 +74,7 @@ const [checked, setChecked] = useState(false);
     };
     useEffect(() => {
       if (TransFile && transcription) {
+        setisLoading(false);
         toast("File Transcription Completed");
         add(
         TransFile
@@ -99,6 +112,7 @@ const [checked, setChecked] = useState(false);
     );
   return (
     <>
+      <LoadingBar color="#006aff" ref={loadingRef} />
     <Toaster />
                 <div className="Transcribe-Box">
             <div className="Transcribe-header">

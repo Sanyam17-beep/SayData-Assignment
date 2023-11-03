@@ -33,7 +33,7 @@ function Main(props) { {/*This is Right component of Layout */}
                             })}
                         </div>
                     </div>
-                    <RecentTableBox  transcriptionRecords={transcriptionRecords}/> {/* Recent Files Table's Box Component */}
+                    <RecentTableBox setTranscriptionRecords={setTranscriptionRecords} transcriptionRecords={transcriptionRecords}/> {/* Recent Files Table's Box Component */}
                 </div>
             </div>
         </>
