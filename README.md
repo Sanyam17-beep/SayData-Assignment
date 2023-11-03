@@ -1,10 +1,19 @@
 # SayData's Abc Firm assignment
 
 This website is created in react with functionalities like:
->1. Hover effects on Button and Sidebar items
->2. Click or Drag and Drop files on Transcribe Box Modal Component using react-drag-drop-files
->3. Pixel accuracy with high standard component management
->4. This website is fully responsive
+>1. This website is responsive so you can see this in your mobile as well
+>2. Notification icon in navbar opens drop-down to see any notification
+>3. Transcribe form modal component consist of click or drag and drop file is fully working, user can click or drag and drop file with given formats
+>4. Hover effects on button and sidebar items 
+>5. Recent Files will show recent transcribed files
+>6. User can download Trancribed file
+>7. Use react-hot-toast for custom alert notifications
+>8. Added Speaker identification check box
+>9. Font Style is Same as Figma Design
+>10. User can Delete all records by selecting table header checkbox then click on Delete icon
+>11. Home Cards show real time details of total transcribed components and file uploaded
+>12. Almost Similar to Given Figma design with little bit of tweaks
+
 
 ## How to run
 
