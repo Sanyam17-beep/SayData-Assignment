@@ -1,5 +1,7 @@
 # SayData's Abc Firm assignment
 
+## Preview:- [SAY-DATA-ASSIGNMENT](https://say-data-assignment.vercel.app/).
+
 This website is created in react with functionalities like:
 >1. This website is responsive so you can see this in your mobile as well
 >2. Notification icon in navbar opens drop-down to see any notification
