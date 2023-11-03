@@ -16,6 +16,7 @@ This website is created in react with functionalities like:
 >13. User can save data by clicking on check box in recentfiles then save button icon
 >14. Trash or delete record management is implemented and confirmation box will open if user want to delete all trash
 >15. Sidebar is fully functional and Show data based on selected option
+>16. Loading bar is also implemented for Trancription 
 
 
 ## How to run
