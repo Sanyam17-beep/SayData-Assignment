@@ -9,7 +9,7 @@ function TranscribeBox(props) { {/*Transcribe Box Form user can click or drag an
 functional form*/}
 const [isLoading,setisLoading]=useState(false);
 const [checked, setChecked] = useState(false);
-    const [text,setText]=useState("The maximum file size is 1GB for audio and 10GB for videos.Supported formats: mp3, mp4, wav, caf, aiff, avi, rmvb, flv, m4a, mov, wmv, wma");
+    const [text,setText]=useState("The maximum file size is 1GB for audio and 10GB for videos.Supported formats: mp3, mp4, wav, caf, aiff, avi, rmvb, flv, m4a, mov, wmv, wma, webm");
     const [content,setContent]=useState("Click to upload");
     const [transcription, setTranscription] = useState("");
     const [drag,setDrag]=useState("or drag and drop");
