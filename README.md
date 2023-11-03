@@ -1,5 +1,7 @@
 # SayData's Abc Firm assignment
 
+## Preview:- [SAY-DATA-ASSIGNMENT](https://say-data-assignment.vercel.app/).
+
 This website is created in react with functionalities like:
 >1. This website is responsive so you can see this in your mobile as well
 >2. Notification icon in navbar opens drop-down to see any notification
@@ -11,8 +13,12 @@ This website is created in react with functionalities like:
 >8. Added Speaker identification check box
 >9. Font Style is Same as Figma Design
 >10. User can Delete all records by selecting table header checkbox then click on Delete icon
->11. Home Cards show real time details of total transcribed components and file uploaded
+>11. Home Cards show real time details of total transcribed components ,file uploaded and saved files
 >12. Almost Similar to Given Figma design with little bit of tweaks
+>13. User can save data by clicking on check box in recentfiles then save button icon
+>14. Trash or delete record management is implemented and confirmation box will open if user want to delete all trash
+>15. Sidebar is fully functional and Show data based on selected option
+>16. Loading bar is also implemented for Trancription 
 
 
 ## How to run
